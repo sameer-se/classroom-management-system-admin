@@ -36,9 +36,12 @@ export default function LoginForm() {
   return (
     <div className="grid place-items-center h-screen">
       <div className="shadow-lg p-5 rounded-lg border-t-4 border-primary">
-        <h1 className="text-xl font-bold my-4 text-center">
-          Login to your account
+        <h1 className="text-xl text-primary font-bold my-4 text-center">
+          Classroom Management System
         </h1>
+        <h2 className="text-base text-secondary font-bold my-4 text-center">
+          Enter your login credentials :)
+        </h2>
 
         <form
           onSubmit={handleSubmit}
@@ -56,7 +59,7 @@ export default function LoginForm() {
             className="rounded-md border-2 border-secondary"
             placeholder="Password"
           />
-          <button className="bg-primary hover:bg-secondary w-full text-white font-bold cursor-pointer px-6 py-2">
+          <button className="bg-primary hover:bg-secondary w-full rounded-md text-white font-bold cursor-pointer px-6 py-2">
             Login
           </button>
           {error && (
@@ -67,7 +70,7 @@ export default function LoginForm() {
 
           <Link className="text-sm mt-3 text-center" href={"/register"}>
             Don`t have an account?{" "}
-            <span className="hover-underline text-blue-600 hover:text-secondary">
+            <span className=" text-blue-600 hover:text-secondary hover:underline">
               Signup
             </span>
           </Link>

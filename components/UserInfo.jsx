@@ -2,29 +2,54 @@
 
 import { signOut } from "next-auth/react";
 import { useSession } from "next-auth/react";
+import Link from "next/link";
 
-export default function UserInfo() {
+export default function AdminDashboard() {
   const { data: session } = useSession();
-  console.log(session);
 
   return (
-    <div className="grid place-items-center h-screen">
-      <div className="shadow-lg p-8 bg-zince-300/10 flex flex-col gap-2 my-6">
-        <div>
-          Name: <span className="font-bold">{session?.user?.name}</span>
+    <div>
+      <div className="flex flex-col h-screen bg-gray-200">
+        <div className="flex justify-between items-center p-6 bg-primary shadow-md">
+          <h1 className="text-2xl font-bold text-white">Admin Dashboard</h1>
+          <nav className="flex space-x-4">
+            <Link href="/home" className="hover:text-secondary text-white pt-2">
+              Home
+            </Link>
+            <Link
+              href="/msystem/addclassroom"
+              className="hover:text-secondary text-white pt-2"
+            >
+              Add Classroom
+            </Link>
+            <Link
+              href="/msystem/addstudent"
+              className="hover:text-secondary text-white pt-2"
+            >
+              Add Student
+            </Link>
+            <Link
+              href="/msystem/createroutine"
+              className="hover:text-secondary text-white pt-2"
+            >
+              Create Routine
+            </Link>
+            <button
+              onClick={() => signOut()}
+              className="bg-secondary hover:bg-red-700 text-white rounded px-6 py-2"
+            >
+              Log Out
+            </button>
+          </nav>
         </div>
-        <div>
-          Role: <span className="font-bold">{session?.user?.role}</span>
+        <div className="flex flex-1 justify-center items-center text-3xl font-bold">
+          Welcome, {session?.user?.name} :)
         </div>
-        <div>
-          Email: <span className="font-bold">{session?.user?.email}</span>
-        </div>
-        <button
-          onClick={() => signOut()}
-          className="bg-red-500 text-white font-bold px-6 py-2 mt-3"
-        >
-          Log Out
-        </button>
+        <footer className="w-full bg-primary h-fit">
+          <p className="text-white text-center pt-4 pb-4">
+            Created By: Sameer Khadka
+          </p>
+        </footer>
       </div>
     </div>
   );

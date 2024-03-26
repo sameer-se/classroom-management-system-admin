@@ -65,9 +65,12 @@ export default function RegisterForm() {
   return (
     <div className="grid place-items-center h-screen">
       <div className="shadow-lg p-5 rounded-lg border-t-4 border-primary">
-        <h1 className="text-xl font-bold my-4 text-center">
-          Create an account
+        <h1 className="text-xl text-primary font-bold my-4 text-center">
+          Classroom Management System
         </h1>
+        <h2 className="text-base text-secondary font-bold my-4 text-center">
+          Create an account :)
+        </h2>
 
         <form
           onSubmit={handleSubmit}
@@ -94,14 +97,14 @@ export default function RegisterForm() {
           <select
             onChange={(e) => setRole(e.target.value)}
             className="rounded-md border-2 border-secondary w-full p-2"
-            placeholder="Role"
+            placeholder="Select Role"
           >
             <option value="">Select Role</option>
             <option value="admin">Admin</option>
             <option value="teacher">Teacher</option>
             <option value="student">Student</option>
           </select>
-          <button className="bg-primary hover:bg-secondary text-white font-bold cursor-pointer px-6 py-2 w-full">
+          <button className="bg-primary hover:bg-secondary rounded-md text-white font-bold cursor-pointer px-6 py-2 w-full">
             Register
           </button>
 
