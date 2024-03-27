@@ -28,39 +28,41 @@ function CreateRoutineForm() {
 
   return (
     <div>
-      <nav>
-        <div className="flex justify-between items-center p-6 bg-primary shadow-md">
-          <h1 className="text-2xl font-bold text-white">Admin Dashboard</h1>
-          <nav className="flex space-x-4">
-            <Link
-              href="/dashboard"
-              className="hover:text-secondary text-white pt-2"
-            >
-              Home
-            </Link>
-            <Link
-              href="/msystem/addclassroom"
-              className="hover:text-secondary text-white pt-2"
-            >
-              Add Classroom
-            </Link>
-            <Link
-              href="/msystem/addstudent"
-              className="hover:text-secondary text-white pt-2"
-            >
-              Add Student
-            </Link>
-            <Link
-              href="/msystem/createroutine"
-              className="hover:text-secondary text-white pt-2"
-            >
-              Create Routine
-            </Link>
-          </nav>
+      <div className="flex flex-col justify-between h-screen bg-gray-200">
+        {/* NavBar */}
+        <div>
+          <div className="flex justify-between w-full items-center p-6 bg-primary shadow-md">
+            <h1 className="text-2xl font-bold text-white">Admin Dashboard</h1>
+            <nav className="flex space-x-4">
+              <Link
+                href="/dashboard"
+                className="hover:text-secondary text-white pt-2"
+              >
+                Home
+              </Link>
+              <Link
+                href="/msystem/addclassroom"
+                className="hover:text-secondary text-white pt-2"
+              >
+                Add Classroom
+              </Link>
+              <Link
+                href="/msystem/addstudent"
+                className="hover:text-secondary text-white pt-2"
+              >
+                Add Student
+              </Link>
+              <Link
+                href="/msystem/createroutine"
+                className="hover:text-secondary text-white pt-2"
+              >
+                Create Routine
+              </Link>
+            </nav>
+          </div>
         </div>
-      </nav>
-      <div className="grid place-items-center h-screen">
-        <div className="shadow-lg p-5 rounded-lg border-t-4 border-primary">
+        {/* Main */}
+        <div className="shadow-lg p-5 rounded-lg border-t-4 w-min ml-[35%] border-primary">
           <h1 className="text-xl font-bold my-4 text-center">
             Create a Routine
           </h1>

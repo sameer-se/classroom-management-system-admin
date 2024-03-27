@@ -21,6 +21,7 @@ export default function LoginForm() {
         password,
         redirect: false,
       });
+      console.log("here", res);
 
       if (res.error) {
         setError("Invalid Credentials");
@@ -37,10 +38,10 @@ export default function LoginForm() {
     <div className="grid place-items-center h-screen">
       <div className="shadow-lg p-5 rounded-lg border-t-4 border-primary">
         <h1 className="text-xl text-primary font-bold my-4 text-center">
-          Classroom Management System
+          CLASSROOM MANAGEMENT SYSTEM
         </h1>
         <h2 className="text-base text-secondary font-bold my-4 text-center">
-          Enter your login credentials :)
+          ADMIN - LOGIN :)
         </h2>
 
         <form

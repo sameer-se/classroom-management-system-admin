@@ -10,10 +10,14 @@ export default function AdminDashboard() {
   return (
     <div>
       <div className="flex flex-col h-screen bg-gray-200">
+        {/* NavBar */}
         <div className="flex justify-between items-center p-6 bg-primary shadow-md">
           <h1 className="text-2xl font-bold text-white">Admin Dashboard</h1>
           <nav className="flex space-x-4">
-            <Link href="/home" className="hover:text-secondary text-white pt-2">
+            <Link
+              href="/dashboard"
+              className="hover:text-secondary text-white pt-2"
+            >
               Home
             </Link>
             <Link
@@ -42,9 +46,11 @@ export default function AdminDashboard() {
             </button>
           </nav>
         </div>
+        {/* Main */}
         <div className="flex flex-1 justify-center items-center text-3xl font-bold">
           Welcome, {session?.user?.name} :)
         </div>
+        {/* Footer */}
         <footer className="w-full bg-primary h-fit">
           <p className="text-white text-center pt-4 pb-4">
             Created By: Sameer Khadka

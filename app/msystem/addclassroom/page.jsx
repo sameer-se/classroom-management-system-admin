@@ -28,8 +28,9 @@ function AddClassroomForm() {
 
   return (
     <div>
-      <header>
-        <div className="flex justify-between items-center p-6 bg-primary shadow-md">
+      <div className="flex flex-col justify-between h-screen bg-gray-200">
+        {/* NavBar */}
+        <div className="flex w-full justify-between items-center p-6 bg-primary shadow-md">
           <h1 className="text-2xl font-bold text-white">Admin Dashboard</h1>
           <nav className="flex space-x-4">
             <Link
@@ -58,9 +59,9 @@ function AddClassroomForm() {
             </Link>
           </nav>
         </div>
-      </header>
-      <div className="grid place-items-center h-screen">
-        <div className="shadow-lg p-5 rounded-lg border-t-4 border-primary">
+        {/* Main Page */}
+
+        <div className="shadow-lg p-5 rounded-lg border-t-4 w-min ml-[35%] border-primary">
           <h1 className="text-xl font-bold my-4 text-center">
             Add a Classroom
           </h1>
@@ -92,6 +93,7 @@ function AddClassroomForm() {
             )}
           </form>
         </div>
+        {/* Footer */}
         <footer className="w-full bg-primary h-fit">
           <p className="text-white text-center pt-4 pb-4">
             Created By: Sameer Khadka

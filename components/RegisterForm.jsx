@@ -8,7 +8,6 @@ export default function RegisterForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("");
   const [error, setError] = useState("");
 
   const router = useRouter();
@@ -16,7 +15,7 @@ export default function RegisterForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!name || !email || !password || !role) {
+    if (!name || !email || !password) {
       setError("All fields are necessary.");
       return;
     }
@@ -46,7 +45,6 @@ export default function RegisterForm() {
           name,
           email,
           password,
-          role,
         }),
       });
 
@@ -66,10 +64,10 @@ export default function RegisterForm() {
     <div className="grid place-items-center h-screen">
       <div className="shadow-lg p-5 rounded-lg border-t-4 border-primary">
         <h1 className="text-xl text-primary font-bold my-4 text-center">
-          Classroom Management System
+          CLASSROOM MANAGEMENT SYSTEM
         </h1>
         <h2 className="text-base text-secondary font-bold my-4 text-center">
-          Create an account :)
+          ADMIN - REGISTER :)
         </h2>
 
         <form
@@ -94,16 +92,6 @@ export default function RegisterForm() {
             className="rounded-md border-2 border-secondary"
             placeholder="Password"
           />
-          <select
-            onChange={(e) => setRole(e.target.value)}
-            className="rounded-md border-2 border-secondary w-full p-2"
-            placeholder="Select Role"
-          >
-            <option value="">Select Role</option>
-            <option value="admin">Admin</option>
-            <option value="teacher">Teacher</option>
-            <option value="student">Student</option>
-          </select>
           <button className="bg-primary hover:bg-secondary rounded-md text-white font-bold cursor-pointer px-6 py-2 w-full">
             Register
           </button>
