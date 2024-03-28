@@ -2,22 +2,44 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 function AddClassroomForm() {
-  const [classroomName, setClassroomName] = useState("");
-  const [studentCapacity, setStudentCapacity] = useState("");
+  const [name, setClassroomName] = useState("");
+  const [capacity, setStudentCapacity] = useState("");
   const [error, setError] = useState("");
+
+  const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!classroomName || !studentCapacity) {
+    if (!name || !capacity) {
       setError("All fields are necessary.");
       return;
     }
 
     try {
-      // Add your logic to add the classroom here
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_BACKEND_API}/api/classrooms`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ name, capacity }),
+        }
+      );
+      if (response.ok) {
+        console.log("Classroom added successfully");
+        alert("Classroom added successfully");
+        // Redirect to the dashboard or any other page
+        router.push("/dashboard");
+      } else {
+        console.log("Error during classroom addition");
+        const errorData = await response.json();
+        setError(errorData.message);
+      }
       console.log(
         `Adding classroom: ${classroomName} with capacity: ${studentCapacity}`
       );

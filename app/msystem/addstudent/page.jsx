@@ -2,26 +2,50 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 function AddStudentForm() {
-  const [studentName, setStudentName] = useState("");
-  const [studentEmail, setStudentEmail] = useState("");
-  const [studentGender, setStudentGender] = useState("");
+  const [name, setStudentName] = useState("");
+  const [email, setStudentEmail] = useState("");
+  const [gender, setStudentGender] = useState("");
   const [error, setError] = useState("");
+
+  const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!studentName || !studentEmail || !studentGender) {
+    if (!name || !email || !gender) {
       setError("All fields are necessary.");
       return;
     }
 
     try {
-      // Add your logic to add the student here
-      console.log(
-        `Adding student: ${studentName} with email: ${studentEmail} and gender: ${studentGender}`
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_BACKEND_API}/api/students`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name,
+            email,
+            gender,
+          }),
+        }
       );
+
+      if (response.ok) {
+        console.log("Student added successfully");
+        // Redirect to the dashboard or any other page
+        alert("Student added successfully");
+        router.push("/dashboard");
+      } else {
+        console.log("Error during classroom addition");
+        const errorData = await response.json();
+        setError(errorData.message);
+      }
     } catch (error) {
       console.log("Error during student addition: ", error);
     }

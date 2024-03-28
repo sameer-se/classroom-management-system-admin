@@ -2,22 +2,62 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 function CreateRoutineForm() {
-  const [routineName, setRoutineName] = useState("");
-  const [routineDetails, setRoutineDetails] = useState("");
+  const [classroomname, setClassroomName] = useState("");
+  const [routinefor, setRoutineFor] = useState("");
+  const [subject, setSubject] = useState("");
+  const [day, setDays] = useState("");
+  const [timefrom, setTimeFrom] = useState("");
+  const [timeto, setTimeTo] = useState("");
+  const [date, setDate] = useState("");
   const [error, setError] = useState("");
+
+  const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!routineName || !routineDetails) {
+    if (
+      !classroomname ||
+      !routinefor ||
+      !subject ||
+      !day ||
+      !timefrom ||
+      !timeto ||
+      !date
+    ) {
       setError("All fields are necessary.");
       return;
     }
 
     try {
-      // Add your logic to create the routine here
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_BACKEND_API}/api/routines`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            classroomname,
+            routinefor,
+            subject,
+            day,
+            timefrom,
+            timeto,
+            date,
+          }),
+        }
+      );
+
+      if (response.ok) {
+        console.log("Routine created successfully");
+        // Redirect to the dashboard or any other page
+        alert("Routine created successfully");
+        router.push("/dashboard");
+      }
       console.log(
         `Creating routine: ${routineName} with details: ${routineDetails}`
       );
@@ -72,26 +112,58 @@ function CreateRoutineForm() {
             className="flex flex-col gap-3 items-center"
           >
             <input
-              onChange={(e) => setRoutineName(e.target.value)}
+              onChange={(e) => setClassroomName(e.target.value)}
               type="text"
               className="rounded-md border-2 border-secondary"
-              placeholder="Routine Name"
+              placeholder="Classroom Name"
             />
 
             <input
-              onChange={(e) => setRoutineDetails(e.target.value)}
+              onChange={(e) => setRoutineFor(e.target.value)}
               type="text"
               className="rounded-md border-2 border-secondary"
               placeholder="Routine For"
             />
-            <p className="text-lg font-normal text-secondary  ">
+            <input
+              onChange={(e) => setSubject(e.target.value)}
+              type="text"
+              className="rounded-md border-2 border-secondary"
+              placeholder="Subject"
+            />
+            <select
+              onChange={(e) => setDays(e.target.value)}
+              className="rounded-md w-full h-10 border-2 bg-gray-200 border-secondary"
+            >
+              <option value="">Select Days</option>
+              <option value="Monday">Monday</option>
+              <option value="Tuesday">Tuesday</option>
+              <option value="Wednesday">Wednesday</option>
+              <option value="Thursday">Thursday</option>
+              <option value="Friday">Friday</option>
+              <option value="Saturday">Saturday</option>
+              <option value="Sunday">Sunday</option>
+            </select>
+            <p className="text-lg font-normal text-green-500  ">
               Starting Time
             </p>
-            <input type="time" name="timefrom" id="timefrom" />
-            <p className="text-lg font-normal text-secondary">Ending Time</p>
-            <input type="time" name="timefrom" id="timefrom" />
+            <input
+              type="time"
+              onChange={(e) => setTimeFrom(e.target.value)}
+              className="rounded-md border-2 border-secondary"
+              name="timefrom"
+              id="timefrom"
+            />
+            <p className="text-lg font-normal text-red-500">Ending Time</p>
+            <input
+              type="time"
+              onChange={(e) => setTimeTo(e.target.value)}
+              className="rounded-md border-2 border-secondary"
+              name="timeto"
+              id="timeto"
+            />
             <input
               type="date"
+              onChange={(e) => setDate(e.target.value)}
               className="rounded-md border-2 border-secondary"
               name="date"
               id="date"
